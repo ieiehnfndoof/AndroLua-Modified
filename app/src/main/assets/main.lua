@@ -683,6 +683,9 @@ m = {
       { MenuItem,
         title = "查错",
         id = "code_check", },
+      { MenuItem,
+        title = "Auto Fix Errors",
+        id = "code_autofix", },
     },
     { SubMenu,
       title = "转到...",
@@ -1304,6 +1307,11 @@ func.check = function(b)
     end
 end
 
+func.autofix = function()
+    local autofix = require "autofix"
+    autofix.showAutoFixDialog(activity, editor)
+end
+
 func.navi = function()
     create_navi_dlg()
     local str = editor.getText().toString()
@@ -1444,6 +1452,7 @@ function onMenuItemSelected(id, item)
         [optmenu.project_info] = func.info,
         [optmenu.code_format] = func.format,
         [optmenu.code_check] = func.check,
+        [optmenu.code_autofix] = func.autofix,
         [optmenu.code_import] = func.fiximport,
         [optmenu.goto_line] = func.gotoline,
         [optmenu.goto_func] = func.navi,
